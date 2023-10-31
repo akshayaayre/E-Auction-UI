@@ -1,0 +1,77 @@
+<!-- <p>user-registration works!</p> -->
+<div class="container">
+    <div id="edit-form">
+        <form [formGroup]="registrationForm">
+            <div class="row">
+                <div class="col-md-2"><label for="firstName">First Name:</label></div>
+                <div class="col-md-5"><input type="text" id="firstName" formControlName="firstName"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><label for="lastName">Last Name:</label></div>
+                <div class="col-md-5"><input type="text" id="lastName" formControlName="lastName"></div>
+            </div>
+
+            
+            <div class="row">
+                <div class="col-md-2"><label for="email">E-mail:</label></div>
+                <div class="col-md-5"><input type="email" id="email" formControlName="email"></div>
+            </div>
+
+            <!-- <div class="row">
+                <div class="col-md-2"><label for="userId">User ID:</label></div>
+                <div class="col-md-5"><input type="text" id="userId" formControlName="userId"></div>
+            </div> -->
+
+            <div class="row">
+                <div class="col-md-2"><label for="password">Password:</label></div>
+                <div class="col-md-5"><input type="password" id="password" formControlName="password"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><label for="userType">User Type:</label></div>
+                <div class="col-md-5">
+                    <select id="productCategory" formControlName="userType" [(ngModel)]="registrationForm.value.userType">
+                        <option value="Seller">Seller</option>
+                        <option value="Buyer">Buyer</option>
+                    </select>    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><label for="address">Address:</label></div>
+                <div class="col-md-5"><input type="text" id="address" formControlName="address"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><label for="city">City:</label></div>
+                <div class="col-md-5"><input type="text" id="city" formControlName="city"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><label for="state">State:</label></div>
+                <div class="col-md-5"><input type="text" id="state" formControlName="state"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><label for="pincode">Pincode:</label></div>
+                <div class="col-md-5"><input type="number" id="pincode" formControlName="pincode"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><label for="phoneNumber">Phone:</label></div>
+                <div class="col-md-5"><input type="number" id="phone" formControlName="phoneNumber"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-4" style="align-self: flex-end;">
+                    <dx-button stylingMode="contained" text="Register" type="default" [width]="120" 
+                    (onClick)="register()" style="margin-right: 7px;"></dx-button>
+                    <dx-button stylingMode="contained" text="Reset" type="default" [width]="120" 
+                    (onClick)="resetForm()"></dx-button>
+                </div>
+            </div>
+        </form>
+    </div>
+

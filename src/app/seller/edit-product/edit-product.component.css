@@ -1,0 +1,15 @@
+.row{
+    padding: 3px;
+}
+
+button{
+    border: 1px solid;
+    padding: 4px 20px;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input.ng-invalid, select.ng-invalid{
+    border: 1px solid red;
+}

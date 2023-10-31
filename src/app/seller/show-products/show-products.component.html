@@ -1,0 +1,29 @@
+<!-- <p>show-products works!</p> -->
+
+<div class="container">
+    <div id="display-all-products">
+        <dx-data-grid [dataSource]="productList" 
+        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true">
+
+        <dxi-column dataField="productId" caption="Product ID"></dxi-column>
+        <dxi-column dataField="productName" caption="Product Name"></dxi-column>
+        <dxi-column dataField="productShortDescription" caption="Short Description"></dxi-column>
+        <dxi-column dataField="productDescription" caption="Product Description"></dxi-column>
+        <dxi-column dataField="startingPrice" caption="Bid Starting Price"></dxi-column>
+        <dxi-column dataField="bidEndDate"></dxi-column>
+        <dxi-column caption="Action" cellTemplate="editButtonCellTemplate" width="160">
+            <div *dxTemplate="let d of 'editButtonCellTemplate'">
+                <dx-button stylingMode="outlined" text="Edit" (onClick)="addEditProduct(d.data)"></dx-button>
+                <dx-button stylingMode="outlined" text="Delete" (onClick)="deleteProduct(d.data)"></dx-button>
+            </div>
+        </dxi-column>
+        </dx-data-grid>
+    </div>
+
+    <br>
+
+    <div id="add-product">
+        <dx-button stylingMode="contained" text="Add Product" type="default" [width]="120" (onClick)="addEditProduct(null)"></dx-button>
+    </div>
+
+</div>

@@ -1,0 +1,26 @@
+<!-- <p>user-login works!</p> -->
+
+<div class="container">
+    <div id="login-form">
+        <form [formGroup]="loginForm">
+            <div class="row">
+                <div class="col-md-2"><label for="email">Email ID:</label></div>
+                <div class="col-md-5"><input type="email" id="email" formControlName="email" required></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><label for="password">Password:</label></div>
+                <div class="col-md-5"><input type="password" id="password" formControlName="password" required></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-4" style="align-self: flex-end;">
+                    <dx-button stylingMode="contained" text="Login" type="default" [width]="120" 
+                    (onClick)="login()" style="margin-right: 7px;"></dx-button>
+                    <dx-button stylingMode="contained" text="Register" type="default" [width]="120" 
+                    (onClick)="registerUser()"></dx-button>
+                </div>
+            </div>
+        </form>
+    </div>

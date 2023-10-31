@@ -1,0 +1,49 @@
+<!-- <p>show-products works!</p> -->
+
+<div class="container">
+    <div id="display-all-products">
+        <dx-data-grid [dataSource]="productList" 
+        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true">
+
+        <dxi-column dataField="productId" caption="Product ID"></dxi-column>
+        <dxi-column dataField="productName" caption="Product Name"></dxi-column>
+        <dxi-column dataField="productShortDescription" caption="Short Description"></dxi-column>
+        <dxi-column dataField="productDescription" caption="Product Description"></dxi-column>
+        <dxi-column dataField="startingPrice" caption="Bid Starting Price"></dxi-column>
+        <dxi-column dataField="bidEndDate"></dxi-column>
+        <dxi-column caption="Action" cellTemplate="editButtonCellTemplate">
+            <div *dxTemplate="let d of 'editButtonCellTemplate'">
+                <dx-button stylingMode="outlined" text="Bid" (onClick)="bidForProduct(d.data)"></dx-button>
+            </div>
+        </dxi-column>
+        </dx-data-grid>
+    </div>
+</div>
+
+<div id="bid-popup">
+    <dx-popup [width]="300" [height]="200" [showTitle]="true" title="Bid Details"
+        [dragEnabled]="false" [hideOnOutsideClick]="false" [showCloseButton]="true"
+        container=".container" [(visible)]="popupVisible">
+
+    <!-- <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="center"
+        [options]="saveButtonOptions">
+    </dxi-toolbar-item> -->
+
+    <!-- <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after"
+        [options]="closeButtonOptions">
+    </dxi-toolbar-item> -->
+
+    <!-- <dxo-position at="bottom" my="center" [of]="positionOf" collision="fit">
+    </dxo-position> -->
+    <div style="padding-top:5px">
+        <label for="bid-amount">Bid Amount: </label>
+        <input type="number" id="bid-amount" value="bidAmount" [(ngModel)]="bidAmount" 
+        min="{{selectedProduct?.startingPrice}}" style="margin-left: 2px;border: 1px solid black;"/>
+    </div>
+    <br>
+    <div style="padding-left: 100px;">
+        <dx-button class="button-info" text="Save" (onClick)="saveBid()">
+        </dx-button>
+    </div>
+</dx-popup>
+</div>

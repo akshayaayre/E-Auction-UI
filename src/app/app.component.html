@@ -1,0 +1,13 @@
+<div class="header">
+    <div class="title"><span>{{title}}</span></div>
+
+    <div class="user-details" *ngIf="username !== null && username !== ''">
+        <span style="padding-right: 150px;">Welcome {{username}}</span>
+        <span (click)="logout()" style="cursor: pointer;">Logout</span>
+    </div>
+</div>
+
+<div class="content">
+    <router-outlet></router-outlet>
+</div>
+

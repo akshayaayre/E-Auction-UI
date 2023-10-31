@@ -1,0 +1,68 @@
+<div class="container">
+    <div id="edit-form">
+        <form [formGroup]="productForm">
+            <div class="row">
+                <div class="col-md-3"><label for="productName">Product Name:</label></div>
+                <div class="col-md-5"><input type="text" id="productName" formControlName="productName"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"><label for="productShortDescription">Short Description:</label></div>
+                <div class="col-md-5"><input type="text" id="productShortDescription" formControlName="productShortDescription"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"><label for="productDescription">Detailed Description:</label></div>
+                <div class="col-md-5"><input type="text" id="productDescription" formControlName="productDescription"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"><label for="productCategory">Category:</label></div>
+                <div class="col-md-5">
+                    <select id="productCategory" formControlName="productCategory" [(ngModel)]="productForm.value.productCategory">
+                        <option value="Painting">Painting</option>
+                        <option value="Sculptor">Sculptor</option>
+                        <option value="Ornament">Ornament</option>
+                    </select>    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"><label for="startingPrice">Starting Price:</label></div>
+                <div class="col-md-5"><input type="text" id="startingPrice" formControlName="startingPrice"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"><label for="bidEndDate">Bid End Date:</label></div>
+                <div class="col-md-5"><input type="date" id="bidEndDate" formControlName="bidEndDate"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-6" style="align-self: flex-end;">
+                    <dx-button stylingMode="contained" text="Save" type="default" [width]="120" (onClick)="saveProduct()"
+                    style="margin-right: 7px;"></dx-button>
+                    <dx-button stylingMode="contained" text="Reset" type="default" [width]="120" (onClick)="resetProductForm()"
+                    style="margin-right: 7px;"></dx-button>
+                    <dx-button stylingMode="contained" text="Back" type="default" [width]="120" (onClick)="back()"></dx-button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+
+    <div id="bid-details" *ngIf="bidDetails && bidDetails.length > 0">
+        <div style="font-weight: bold;">Bids:</div>
+        <br>
+
+        <dx-data-grid [dataSource]="bidDetails" 
+        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true">
+
+        <dxi-column dataField="bidAmount" caption="Bid Amount"></dxi-column>
+        <dxi-column dataField="userDetails.firstName" caption="First Name"></dxi-column>
+        <dxi-column dataField="userDetails.lastName" caption="Last Name"></dxi-column>
+        <dxi-column dataField="userEmail" caption="Email"></dxi-column>
+        <dxi-column dataField="userDetails.phoneNumber" caption="Mobile"></dxi-column>
+        </dx-data-grid>
+    </div>
+</div>

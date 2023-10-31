@@ -4,6 +4,7 @@ import { SellerService } from './seller-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { BidWithUserDetails } from '../model/bidWithUserDetails';
+import { Product } from '../model/product';
 
 describe('SellerServiceService', () => {
   let service: SellerService;
@@ -84,4 +85,97 @@ describe('SellerServiceService', () => {
     //Respond with the expected bid details
     req.flush(expectedBidWithUserDetails);
   });
+
+  it('should get all products for a user', () => {
+    const mockProducts: Product[] = [
+      {
+        productId: 1,
+        productName: "Product1",
+        productShortDescription:  "Product1",
+        productDescription:  "Product1",
+        startingPrice: 100,
+        bidEndDate: new Date(),
+        userEmail: "aa@abc.com"
+      },
+      {
+        productId: 2,
+        productName: "Product2",
+        productShortDescription:  "Product2",
+        productDescription:  "Product2",
+        startingPrice: 100,
+        bidEndDate: new Date(),
+        userEmail: "aa@abc.com"
+      }
+    ];
+    const email = 'aa@abc.com';
+
+    service.getAllProducts(email).subscribe((products) => {
+      expect(products).toEqual(mockProducts);
+    });
+
+    const req = httpTestingController.expectOne(service.readBaseUrl + "/get-all-products-for-user?email=" + email);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockProducts);
+  });
+
+  it('should add a product', () => {
+    const mockProduct: Product = {
+      productId: 1,
+      productName: "Product1",
+      productShortDescription:  "Product1",
+      productDescription:  "Product1",
+      startingPrice: 100,
+      bidEndDate: new Date(),
+      userEmail: "aa@abc.com"
+    };
+
+    service.addProduct(mockProduct).subscribe((product) => {
+      expect(product).toEqual(mockProduct);
+    });
+
+    const req = httpTestingController.expectOne(service.baseURL + "/addProduct");
+    expect(req.request.method).toBe('POST');
+    req.flush(mockProduct);
+  });
+
+  it('should update a product', () => {
+    const mockProduct: Product =  {
+      productId: 1,
+      productName: "Product1",
+      productShortDescription:  "Product1",
+      productDescription:  "Product1",
+      startingPrice: 100,
+      bidEndDate: new Date(),
+      userEmail: "aa@abc.com"
+    };
+
+    service.updateProduct(mockProduct).subscribe((product) => {
+      expect(product).toEqual(mockProduct);
+    });
+
+    const req = httpTestingController.expectOne(service.baseURL + "/updateProduct");
+    expect(req.request.method).toBe('PUT');
+    req.flush(mockProduct);
+  });
+
+  it('should delete a product', () => {
+    const mockProduct: Product = {
+      productId: 1,
+      productName: "Product1",
+      productShortDescription:  "Product1",
+      productDescription:  "Product1",
+      startingPrice: 100,
+      bidEndDate: new Date(),
+      userEmail: "aa@abc.com"
+    };
+
+    service.deleteProduct(mockProduct).subscribe((product) => {
+      expect(product).toEqual(mockProduct);
+    });
+
+    const req = httpTestingController.expectOne(service.baseURL + "/delete/" + mockProduct);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(mockProduct);
+  });
+
 });
